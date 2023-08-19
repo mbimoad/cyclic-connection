@@ -17,7 +17,7 @@ const Book = mongoose.model('Book', mongoose.Schema({
 }));
 
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect("mongodb+srv://mbimoad:bimo1940@cluster0.igtfyfn.mongodb.net/test", {
     useNewUrlParser: true, 
     useUnifiedTopology: true, 
     useCreateIndex: true,
