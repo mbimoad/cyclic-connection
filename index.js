@@ -17,16 +17,14 @@ const Book = mongoose.model('Book', mongoose.Schema({
 }));
 
 
-mongoose.set('strictQuery', false);
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-}
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useCreateIndex: true,
+})
+.then(respon => console.log('connected'))
+.catch(error => process.exit()); 
+
 
 //Routes go here
 app.get('/', async (req,res) => {
@@ -58,8 +56,6 @@ app.get('/tambah', async (req,res) => {
 })
 
 //Connect to the database before listening
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
+app.listen(PORT, () => {
+  console.log("listening for requests");
 })
