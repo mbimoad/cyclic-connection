@@ -38,21 +38,17 @@ app.get('/', async (req,res) => {
 
 
 app.get('/tambah', async (req,res) => {
-  try {
-    await Book.insertMany([
-      {
-        title: "Sons Of Anarchy",
-        body: "Body text goes here...",
-      },
-      {
-        title: "Games of Thrones",
-        body: "Body text goes here...",
-      }
-    ]);
-    res.json({"Data":"Added"})
-  } catch (error) {
-    console.log("err", + error);
-  }
+  Book.insertMany([
+    {
+      title: "Sons Of Anarchy",
+      body: "Body text goes here...",
+    },
+    {
+      title: "Games of Thrones",
+      body: "Body text goes here...",
+    }
+  ]);
+  res.json({"Data":"Added"})
 })
 
 //Connect to the database before listening
